@@ -51,12 +51,13 @@
   </div>
 
   <!-- Navigation -->
-  <nav class="navbar">
+  <nav class="navbar navbar-visible">
     <div class="logo-container">
       <img src="logos/Horizontal_Logo_Tagline/PNG/-DirectSeq_LogoRGB_Final__Horizontal+Tagline_FullColor.png" alt="DirectSeq Logo" class="logo-img">
     </div>
     <div class="nav-links">
       <a href="#about">About Us</a>
+      <a href="#problem">Problem</a>
       <a href="#technology">Technology</a>
       <a href="#services">Services</a>
       <a href="#team">Team</a>
@@ -77,7 +78,7 @@
       <div class="hero-glass">
         <img src="logos/Horizontal_Logo/PNG/-DirectSeq_LogoRGB_Final__Horizontal_FullColor.png" alt="DirectSeq Logo" class="hero-logo">
         <p class="hero-subtitle">World's first RNome sequencing platform</p>
-        <p class="hero-subtitle hero-subtitle-green">Decoding RNA's Hidden Code: Uncovering Ground-Truth Sequences with Full Modifications.</p>
+        <p class="hero-subtitle hero-subtitle-green">Uncovering Ground-Truth Sequences with All Modifications.</p>
       </div>
       <div class="cta-buttons">
         <button class="btn btn-primary">Learn More</button>
@@ -87,25 +88,26 @@
   </section>
 
   <!-- About Section -->
-  <section id="about" class="about-section">
-    <div class="container">
-      <h2 class="section-title">About Us</h2>
-      <div class="about-glass">
-        <div class="about-content">
-          <div class="about-text">
-            <p> DirectSeq technology services fills a crucial quality assurance gap for RNA therapeutics
-                developers, and delivers on the true RNome for the first time, providing the first unbiased, comprehensive and exhaustive means by which to
-                directly sequence and confirm the identity of all RNA species present in a sample.  
-            </p>
-            <p>With a foundation in advanced mass spectrometry and molecular biology, we’re pushing the boundaries of scientific discovery to unlock the full complexity of RNA molecules including their sequence, structure, and modifications all in a single experiment.</p>
-          </div>
-          <div class="about-image">
-            <img src="logos/Stacked_Logo_Tagline/PNG/-DirectSeq_LogoRGB_Final__Stacked+Tagline_FullColor.png" alt="DirectSeq Logo">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+ <section id="about" class="about-section"> 
+  <div class="container"> 
+    <h2 class="section-title">About Us</h2> 
+    <div class="about-glass"> <div class="about-content"> 
+      <div class="about-text"> 
+        <p> DirectSeq technology services fills a crucial quality assurance gap for RNA 
+          therapeutics developers, and delivers on the true RNome for the first time, providing the first unbiased, comprehensive and exhaustive means by which to directly sequence and confirm the identity of all RNA species present in a sample. </p> 
+        <p>With a foundation in advanced mass spectrometry and molecular biology, 
+          we're pushing the boundaries of scientific discovery to unlock the full 
+          complexity of RNA molecules including their sequence, structure, and 
+          modifications all in a single experiment.</p> 
+        </div> <div class="about-image"> 
+          <img src="logos/Stacked_Logo_Tagline/PNG/-DirectSeq_LogoRGB_Final__Stacked+Tagline_FullColor.png" alt="DirectSeq Logo"> 
+        </div> 
+      </div> 
+    </div> 
+  </div> 
+</section>
+
+
 
 
 <!-- The Problem Section -->
@@ -500,75 +502,101 @@
         <article class="pub-card">
           <header class="pub-header">
             <h3 class="pub-title">
-              Mass Spectrometry-Based Direct Sequencing of tRNAs De Novo and Quantitative Mapping of Multiple RNA Modifications
+               Direct de novo sequencing of therapeutic RNA and impurities via layer-by-layer
+intensity-resolved mass spectrometry
             </h3>
-            <p class="pub-meta">Journal: Journal of the American Chemical Society • Year: 2024</p>
+            <p class="pub-meta">Under Review</p>
           </header>
           <ul class="pub-highlights">
-            <li>Introduces a novel MS ladder complementation sequencing (MLC-Seq) approach that enables de novo sequencing of full-length heterogeneous cellular tRNAs with multiple nucleotide modifications at single-nucleotide precision.</li>
-            <li>Retains full RNA modification information (unlike many next-generation sequencing methods), thereby preserving sequence diversity and modification context.</li>
-            <li>Demonstrates quantitative mapping of modification stoichiometries, including detecting partial modifications and isoforms, and tracks changes after treatment with the enzyme AlkB.</li>
-            <li>Offers a powerful platform for systematic, quantitative, site-specific mapping of RNA modifications, revealing the complete informational content of tRNAs.</li>
+            <li>3D NGMS-Seq is a next-generation mass-spectrometry-based sequencing platform that enables de novo direct sequencing of mixed RNA samples with 100% accuracy, addressing the growing need for comprehensive RNA analysis in therapeutic development.</li>
+            <li>It enhances conventional LC-MS/MS by integrating MS intensity into 2D mass-retention-time (tR) data, forming a 3D mass-intensity-tR matrix and using a nested alignment algorithm to computationally separate ladder fragments according to parent RNA abundances.</li>
+            <li>Through controlled acid hydrolysis, the method generates ladder fragments, performs base-calling from mass differences to identify canonical and modified nucleotides, and then assembles full-length RNA sequences via statistical modeling and hydrolysis kinetics.</li>
+            <li>Demonstrated on synthetic siRNA, miRNA, and CRISPR/Cas9 sgRNAs, 3D NGMS-Seq uncovered unexpected low-abundance RNA impurities and subtle methylation ambiguities (e.g., Um vs mU; Am vs mA), offering a powerful new tool for RNA drug development, QC, and regulatory validation.</li>
           </ul>
         </article>
+      </div>
 
+     <!-- Centered "More Publications" Button -->
+      <div class="more-publications">
+        <a href="publications.html" class="btn btn-secondary">
+          More Publications
+        </a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Contact Section -->
+<!-- Contact Section -->
 <section id="contact" class="contact-section">
   <div class="container">
     <h2 class="section-title">Contact Us</h2>
 
     <div class="contact-form">
-      <form action="https://formspree.io/f/mldarvab" method="POST">
-        
+      <form action="https://formspree.io/f/mldarvab" method="POST" id="contact-form" novalidate>
         <!-- Name -->
         <div class="form-group">
-          <input 
-            type="text" 
-            name="name" 
-            class="form-control" 
-            placeholder="Your Name" 
-            required>
+          <label for="contact-name" class="sr-only">Your Name</label>
+          <input
+            id="contact-name"
+            type="text"
+            name="name"
+            class="form-control"
+            placeholder="Your Name"
+            autocomplete="name"
+            required
+          />
         </div>
 
         <!-- Email -->
         <div class="form-group">
-          <input 
-            type="email" 
-            name="_replyto" 
-            class="form-control" 
-            placeholder="Your Email" 
-            required>
+          <label for="contact-email" class="sr-only">Your Email</label>
+          <input
+            id="contact-email"
+            type="email"
+            name="email"
+            class="form-control"
+            placeholder="Your Email"
+            autocomplete="email"
+            inputmode="email"
+            required
+          />
         </div>
 
         <!-- Subject -->
         <div class="form-group">
-          <input 
-            type="text" 
-            name="subject" 
-            class="form-control" 
-            placeholder="Subject">
+          <label for="contact-subject" class="sr-only">Subject</label>
+          <input
+            id="contact-subject"
+            type="text"
+            name="subject"
+            class="form-control"
+            placeholder="Subject"
+            autocomplete="on"
+          />
         </div>
 
         <!-- Message -->
         <div class="form-group">
-          <textarea 
-            name="message" 
-            class="form-control" 
-            placeholder="Your Message" 
-            rows="5" 
-            required></textarea>
+          <label for="contact-message" class="sr-only">Your Message</label>
+          <textarea
+            id="contact-message"
+            name="message"
+            class="form-control"
+            placeholder="Your Message"
+            rows="5"
+            required
+          ></textarea>
         </div>
 
-        <!-- Hidden custom subject for your email inbox -->
-        <input type="hidden" name="_subject" value="New Contact Message from DirectSeq Website">
+        <!-- Hidden: Subject line shown in your inbox -->
+        <input type="hidden" name="_subject" value="New Contact Message from DirectSeq Website" />
 
-        <!-- Optional thank-you redirect -->
-        <input type="hidden" name="_next" value="https://directseq.com/thankyou.html">
+        <!-- Optional: redirect after success (keep only if this URL exists) -->
+        <!-- <input type="hidden" name="_next" value="https://directseq.com/thankyou.html" /> -->
+
+        <!-- Honeypot: blocks simple bots -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
 
         <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
       </form>
@@ -579,28 +607,28 @@
 
   <!-- Footer -->
   <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <img src="logos/Horizontal_Logo/PNG/-DirectSeq_LogoRGB_Final__Horizontal_InvertedFullColor.png" alt="DirectSeq Logo" style="height: 40px;">
-          </div>
-        </div>
-        <div class="footer-links">
-          <a href="#technology">Technology</a>
-          <a href="#services">Services</a>
-          <a href="#team">Team</a>
-          <a href="#partners">Partners</a>
-          <a href="#about">About Us</a>
-          <a href="#contact">Contact</a>
-          <a href="#">Privacy Policy</a>
-        </div>
-        <div class="copyright">
-          © 2025 DirectSeq Biosciences. All Rights Reserved.
-        </div>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="logos/Horizontal_Logo/PNG/-DirectSeq_LogoRGB_Final__Horizontal_InvertedFullColor.png"
+             alt="DirectSeq Logo" style="height: 40px;">
+      </div>
+
+      <div class="footer-links">
+       <a href="#about">About Us</a>
+      <a href="#problem">Problem</a>
+      <a href="#technology">Technology</a>
+      <a href="#services">Services</a>
+      <a href="#team">Team</a>
+      <a href="#partners">Partners</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+      <a href="#">Privacy Policy</a>
+      </div>
+
+      <div class="copyright">
+        © 2025 DirectSeq Biosciences. All Rights Reserved.
       </div>
     </div>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  </div>
+</footer>
