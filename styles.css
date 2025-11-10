@@ -1229,7 +1229,7 @@ section {
 }
 
 /* ============================
-   PUBLICATIONS
+   PUBLICATIONS (All pages)
    ============================ */
 
 #publications {
@@ -1238,6 +1238,7 @@ section {
   padding: 5rem 2rem;
 }
 
+/* Frosted container around publications grid */
 .pub-glass {
   background: rgba(243, 255, 255, 0.5);
   border: 2px solid rgba(7, 144, 147, 0.35);
@@ -1248,6 +1249,7 @@ section {
   padding: 2.25rem;
 }
 
+/* Two-column grid on desktop, one on mobile */
 .pub-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1255,27 +1257,26 @@ section {
   max-width: 1100px;
   margin: 0 auto;
 }
-
 @media (max-width: 900px) {
   .pub-grid { grid-template-columns: 1fr; }
 }
 
+/* Individual publication card */
 .pub-card {
   background: rgba(243, 255, 255, 0.9);
   border: 1px solid rgba(10, 33, 66, 0.1);
   border-radius: 16px;
-  padding: 1.5rem 1.5rem 1.25rem;
+  padding: 1.8rem 2rem;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 }
-
 .pub-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 14px 30px rgba(40, 191, 162, 0.18);
-  border-color: var(--directseq-green);
+  border-color: var(--directseq-green, #28BFA2);
 }
 
 .pub-header { margin-bottom: 0.25rem; }
@@ -1283,43 +1284,101 @@ section {
 .pub-title {
   font-family: 'Eurostile Extended Medium', 'Montserrat', sans-serif;
   font-size: 1.25rem;
-  color: var(--directseq-blue);
+  color: var(--directseq-blue, #0A2142);
   margin: 0 0 .25rem 0;
 }
 
 .pub-meta {
-  color: var(--directseq-teal);
+  color: var(--directseq-teal, #079093);
   font-weight: 600;
   margin: 0;
 }
 
+/* Bullet points */
 .pub-highlights {
   margin: 0.25rem 0 0.25rem 1rem;
   padding: 0;
-  color: var(--directseq-blue);
+  color: var(--directseq-blue, #0A2142);
   line-height: 1.55;
 }
-
 .pub-highlights li { margin: 0.25rem 0; }
 
-.pub-cta { margin-top: 0.5rem; }
+/* CTA area under text — centered with spacing */
+.pub-cta {
+  text-align: center;      /* centers the button */
+  margin-top: 1.5rem;      /* space between text and button */
+}
+.pub-cta .btn {
+  display: inline-block;
+  background-color: #5bbca8;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.pub-cta .btn:hover {
+  background-color: #47a690;
+  transform: translateY(-2px);
+}
 
-.pub-more {
+/* “More Publications” button under the grid */
+.more-publications {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+.more-publications .btn {
+  background-color: #5bbca8;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.more-publications .btn:hover {
+  background-color: #3e9f8b;
+  transform: translateY(-2px);
+}
+
+/* Row of buttons used on publications-details page */
+.cta-row {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  align-items: center;
+  gap: 1.5rem;        /* space between buttons */
+  margin-top: 2.5rem; /* space above the buttons */
+}
+.cta-row .btn {
+  padding: 0.9rem 2rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+.cta-row .btn-primary {
+  background-color: #5bbca8;
+  color: #fff;
+  border: none;
+}
+.cta-row .btn-primary:hover { background-color: #47a690; }
+.cta-row .btn-secondary {
+  border: 2px solid #0a1f36;
+  color: #0a1f36;
+  background: transparent;
+}
+.cta-row .btn-secondary:hover {
+  background-color: #0a1f36;
+  color: #fff;
 }
 
-.nowrap { white-space: nowrap; }
-
-/* Optional: publication buttons width on small screens */
-@media (max-width: 480px) {
-  .pub-cta .btn, .pub-more .btn { width: 100%; text-align: center; }
+/* “All Publications” list page */
+.pub-list {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
-
-/* All Publications list styling */
-.pub-list { display: grid; gap: 1.25rem; max-width: 900px; margin: 0 auto; }
-
 .pub-list-item {
   background: rgba(243, 255, 255, 0.9);
   border: 1px solid rgba(10,33,66,.1);
@@ -1332,54 +1391,21 @@ section {
   transform: translateY(-4px);
   box-shadow: 0 12px 24px rgba(40,191,162,.18);
 }
-.pub-summary { color: var(--directseq-blue); line-height: 1.6; margin: .5rem 0 0.75rem; }
-
-/* Contact Section */
-.contact-section {
-  background: linear-gradient(to bottom, rgba(5, 12, 42, 0.6), rgba(0, 37, 68, 0.4));
+.pub-summary {
+  color: var(--directseq-blue, #0A2142);
+  line-height: 1.6;
+  margin: .5rem 0 0.75rem;
 }
 
-.contact-form {
-  max-width: 600px;
-  margin: 0 auto;
-  background: rgba(243, 255, 255, 0.95);
-  padding: 3rem;
-  border-radius: 15px;
-  border: 1px solid rgba(10, 33, 66, 0.1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+/* Utility */
+.nowrap { white-space: nowrap; }
+
+/* Mobile tweaks: make buttons full width if desired */
+@media (max-width: 480px) {
+  .pub-cta .btn,
+  .pub-more .btn { width: 100%; text-align: center; }
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-control {
-  width: 100%;
-  padding: 1rem;
-  background: rgba(243, 255, 255, 0.9);
-  border: 1px solid rgba(10, 33, 66, 0.2);
-  border-radius: 8px;
-  color: var(--directseq-blue);
-  font-family: 'Nimbus Sans Light', 'Roboto', sans-serif;
-  font-size: 1rem;
-  transition: all 0.3s;
-}
-
-.form-control:focus {
-  outline: none;
-  border-color: var(--directseq-green);
-  box-shadow: 0 0 0 2px rgba(40, 191, 162, 0.3);
-}
-
-.form-control::placeholder {
-  color: rgba(10, 33, 66, 0.5);
-}
-
-textarea.form-control {
-  min-height: 150px;
-  resize: vertical;
-}
 
 /* Footer */
 footer {
@@ -1778,6 +1804,90 @@ footer {
   }
 }
 
+/* ============================
+   CONTACT — card + inputs
+   ============================ */
+
+/* Visually hide labels but keep for screen readers */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Section background (keeps your heading white readable) */
+.contact-section {
+  background: linear-gradient(to bottom, rgba(5, 12, 42, 0.60), rgba(0, 37, 68, 0.40));
+}
+
+/* The frosted card */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(243, 255, 255, 0.95);
+  padding: 3rem;
+  border-radius: 15px;
+  border: 1px solid rgba(10, 33, 66, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
+}
+
+/* Spacing between fields */
+.form-group { margin-bottom: 1.5rem; }
+
+/* Inputs / textarea look */
+.form-control {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(243, 255, 255, 0.90);
+  border: 1px solid rgba(10, 33, 66, 0.20);
+  border-radius: 8px;
+  color: var(--directseq-blue);
+  font-family: 'Nimbus Sans Light', 'Roboto', sans-serif;
+  font-size: 1rem;
+  transition: box-shadow .2s, border-color .2s, background .2s;
+}
+
+.form-control::placeholder { color: rgba(10, 33, 66, 0.55); }
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--directseq-green);
+  box-shadow: 0 0 0 2px rgba(40, 191, 162, 0.30);
+  background: rgba(243, 255, 255, 1);
+}
+
+/* Textarea sizing */
+textarea.form-control {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Submit button full width */
+.contact-form .btn.btn-primary {
+  width: 100%;
+  border: none;
+  box-shadow: 0 6px 18px rgba(40, 191, 162, 0.28);
+}
+.contact-form .btn.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+/* Mobile padding tweak already present, keep this override */
+@media (max-width: 576px) {
+  .contact-form { padding: 1.5rem; }
+}
+
+
+
+
 /* ================================
    MOBILE FIXES (drop at the end)
    ================================ */
@@ -1933,5 +2043,5 @@ footer {
   .menu-toggle.active span:nth-child(3) {
     background: #0A2142 !important;
   }
-}
 
+}
