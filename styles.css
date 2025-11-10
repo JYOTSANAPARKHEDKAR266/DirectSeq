@@ -1907,3 +1907,31 @@ footer {
 @media (max-width: 768px) {
   html, body { overflow-x: hidden !important; }
 }
+
+/* Make hamburger icon darker on mobile */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block !important;
+    position: relative;
+    z-index: 101;
+  }
+
+  .menu-toggle span {
+    background: var(--directseq-blue) !important;   /* dark navy */
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.15);   /* subtle edge for contrast */
+    border-radius: 2px;
+  }
+
+  /* Optional: when navbar has a very light bg, force extra contrast */
+  .navbar.navbar-visible .menu-toggle span {
+    background: #0A2142 !important; /* same as var(--directseq-blue), explicit for safety */
+  }
+
+  /* Active (X) state — keep dark as well */
+  .menu-toggle.active span:nth-child(1),
+  .menu-toggle.active span:nth-child(2),
+  .menu-toggle.active span:nth-child(3) {
+    background: #0A2142 !important;
+  }
+}
+
