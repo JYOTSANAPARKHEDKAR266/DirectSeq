@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Problem • DirectSeq</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --directseq-blue: #0a2142;
+  --directseq-teal: #079093;
+  --directseq-green: #28bfa2;
+  --directseq-white: #f3ffff;
+}
+
+/* Base */
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(1200px 600px at 60% 0%, rgba(7,144,147,0.08), transparent 40%),
+              linear-gradient(180deg, #e7f6f6 0%, #f8ffff 40%, #faffff 100%);
+  min-height: 100vh;
+  font-family: 'Roboto', Arial, sans-serif;
+  color: var(--directseq-blue);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.sub-hero {
+  padding: 56px 0 28px;
+  text-align: center;
+}
+.brand-link { display: inline-block; opacity: 0.95; }
+.brand-logo { height: 42px; margin-bottom: 10px; }
+.sub-hero-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+.sub-hero-sub {
+  color: rgba(10,33,66,.85);
+  margin: 0;
+}
+
+/* Content */
+.content-wrap { padding: 30px 0 84px; }
+
+.glass-card {
+  background: rgba(243,255,255,.92);
+  border: 1px solid rgba(10,33,66,.08);
+  border-radius: 20px;
+  padding: 26px 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  line-height: 1.7;
+  transition: all 0.25s ease;
+}
+.glass-card:hover {
+  box-shadow: 0 14px 36px rgba(40,191,162,.20);
+  transform: translateY(-2px);
+}
+
+/* Headings */
+.h2-underline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  margin: 0 0 12px;
+  position: relative;
+}
+.h2-underline::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin: 10px 0 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--directseq-green), var(--directseq-teal));
+}
+.glass-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+
+/* Paragraphs */
+.glass-card p {
+  font-size: 1.05rem;
+  margin: 0 0 12px;
+  opacity: 0.95;
+}
+
+/* Grid layout */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 22px;
+}
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* Styled List for DSMX section */
+.styled-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 12px;
+}
+
+.styled-list li {
+  position: relative;
+  margin-bottom: 14px;
+  padding-left: 28px;
+  font-size: 1.05rem;
+  color: #0a2142;
+  line-height: 1.7;
+}
+
+.styled-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--directseq-teal, #079093);
+  font-weight: bold;
+}
+
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 11px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: .4px;
+  transition: all .25s ease;
+}
+.btn-primary {
+  background: linear-gradient(90deg, var(--directseq-green), var(--directseq-teal));
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(7,144,147,.25);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(7,144,147,.32);
+}
+.btn-secondary {
+  background: rgba(7,144,147,.1);
+  color: var(--directseq-teal);
+  border: 1px solid rgba(7,144,147,.25);
+}
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(7,144,147,.16);
+}
+.cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.cta-row .btn { min-width: 180px; }
+</style>
+</head>
+
+<body>
+  <header class="sub-hero">
+    <div class="container">
+      <a class="brand-link" href="index.html">
+        <img src="logos/Horizontal_Logo/PNG/-DirectSeq_LogoRGB_Final__Horizontal_FullColor.png"
+             alt="DirectSeq" class="brand-logo" />
+      </a>
+      <h1 class="sub-hero-title">The Problem</h1>
+      <p class="sub-hero-sub">Why modification-aware RNA sequencing is essential for safety and compliance.</p>
+    </div>
+  </header>
+
+  <main class="content-wrap">
+    <div class="container">
+
+      <section class="glass-card">
+        <h2 class="h2-underline">Overview</h2>
+        <p>
+          Regulatory scrutiny of the integrity of RNA therapeutics is expected to increase and
+the regulatory framework for this is in the process of being defined.
+ Modified basesin smalRNAsand RNA therapeuticsare crucialfor the processing
+ and the biologicalactivity through complex feedback networks involving their
+ writing, erasing and sensing and disruption of which results in celular dysregulation
+ and disease . For smalRNA drugsthe pattern and quality of intended modifications
+ is therefore foundationalto their effectiveness and toxicity.
+ Modified mRNA basesare also used by cels, for the regulation of half-life. Some
+ mRNA therapieslike vaccines are intentionaly engineered with modified bases at
+ specific positions to ensure persistence, while others are not, and in either case,
+ their preparations can include RNAs with unintentionalbase modifications that create
+ adverse events.
+        </p>
+        <p>
+           Authorities are signaling interest in standardized approaches to ensure the safety
+ and efficacy of RNA therapeutics including the detection and quantification of both
+ intended and unintended base modifications, prompting cals for more rigorous,
+ modificationaware analyticalassays in submission.
+The problem is that while common contaminants such as dsRNA or plasmid DNA
+ associated with the manufacturing process are easy to detect with existing
+ technologies (e.g. LC-MS, PCRor chromatography), the discernment and
+ quantification of modified nucleotides requires direct, de-novo RNA sequencing
+ which has not yet been possible.
+ This is the problem we elegantly solve at Directseq.
+        </p>
+      </section>
+
+      <section class="grid-2">
+        <article class="glass-card">
+          <h3>Importance of Small RNA Base Modifications</h3>
+          <p>
+            Micro-ribonucleotides (miRNAs) regulate cellular homeostasis primarily through gene silencing. Modified
+            ribonucleotide bases (e.g., m<sup>6</sup>A) are critical for this function, forming binding conformations for proteins
+            involved in writing, erasing, and sensing. Because these pathways are tightly controlled in cells, quality assurance
+            of intended base-modification distributions in small-RNA therapeutics is vital for patient safety.
+          </p>
+        </article>
+
+        <article class="glass-card">
+          <h3>Danger of Unintended RNA Base Modifications</h3>
+          <p>
+            Both phosphoramidite syntheses and IVT reactions can produce trace isomer contaminants containing unnatural
+            ribonucleotide modifications via chemical degradation (oxidation, deamination, hydrolysis), supplier or lot
+            impurities, and polymerase side-activities. Lot-to-lot variation in these isomers has been associated with serious
+            adverse events—including, in rare cases, death.
+          </p>
+        </article>
+
+        <article class="glass-card">
+          <h3>Analytical Limitations Today</h3>
+          <p>
+            Common contaminants like dsRNA or plasmid DNA are detectable by LC-MS, PCR, or chromatography, but
+            <strong>modified nucleotide</strong> discernment and quantification requires direct, <em>de-novo</em> RNA sequencing—
+            which has not been possible with conventional methods.
+          </p>
+        </article>
+
+        <article class="glass-card">
+          <h3>Safety &amp; Regulatory Implications</h3>
+          <p>
+            Authorities are signaling interest in standardized, modification-aware assays in submissions to ensure the safety and
+            efficacy of RNA therapeutics. Lack of visibility into intended and unintended base modifications creates critical risk
+            and uncertainty for developers and regulators.
+          </p>
+        </article>
+      </section>
+
+      <section class="glass-card">
+        <h2 class="h2-underline">A technology Leap is needed</h2>
+        <p>
+           Liquid Chromatography Mass Spec(LC-MS)is used for controlof amajority of the
+ RNA therapeutic CriticalQuality Attributes (CQAs), but sequence identity
+ assessments are normaly performed through RT-PCR, which is incapable of
+ identifying nucleotide base modifications and quantifying the isomers containing
+ them. Modified base isomer distributions should be added to the CriticalQuality
+ Attribute list for RNA therapeutics, and these distributions can only be appreciated
+ through direct RNA sequencing. The problem with direct RNA sequencing up until
+ now isthat sequence could only be obtained from highly purified samples capable
+ of producing complete ladders, and only in aconfirmatory manner which required
+ pre-determined knowledge of the sequence. Incapable of simultaneous, direct, de
+novo (and hypothesis-free)sequencing and quantitative assessment, prior state-of
+the-art platforms for RNA sequencing such as LC-MSare incapable of rigorous
+ quality control needed to identify unknown contaminating modified base.
+ The RNA therapeutics Industry looks forward to the introduction of 'novelanalytical
+ tools to gain more insight into the use of CQAs (CriticalQuality Attributes) such
+ as sequence identity' . The most attractive tools wilalow addressing large numbers
+ of CQAssimultaneously, such as LC-MScurrently does, while also opening doors
+ beyond current limitations to address previously unaddressed facets of CQAs (such
+ as modified base containing isomers)that have emerged during clinicaland post
+clinical stages as potential safety concerns.
+        </p>
+        </section>
+
+      <section class="glass-card">
+        <h2 class="h2-underline">How DirectSeq Solves This</h2>
+        <p>
+           DirectSeq's Next Generation Mass Spec (DSMX™-Seq)platform is the significant
+ technology leap patients, regulators and RNA therapeutics professionals have been
+ waiting for.
+ Instead of inferring RNA identity through mass readout, as with LC-MS, DSMX™-Seq-Seq
+ reveals identity directly via de-novo sequencing.
+ DSMX™-Seq-Seq delivers single-run, exhaustive, direct, 100% accurate sequencing of al
+ RNA species in asample, including those containing any of up to 170+ base
+ modifications. DSMX™-Seq-Seq alows for sequencing and quantification of not just the
+ major RNA species, but each minor primary sequence isomer, including those
+ containing one ribonucleotide base modification, multiple (even clustered) base
+ modifications, and it delivers this sequence information while also delivering
+ everything else that LC-MS does in terms of detection readout (e.g. presence of
+sequencing length, secondary and tertiary structure variants, cofactors etc.).
+ This represents asignificant advancement beyond the limitations of LC-MS, and
+ opens the door for the first time to empirical, hypothesis- and bias-free assessment
+ of RNA identity and quality. There is no modified base information loss due to a
+ cDNA conversion step, as with RNAseq, and unlike with pore based technologies,
+ modified ribonucleotide bases are sequenced whether they are isolated on the RNA
+ strand or clustered.
+ </p>
+ <p>
+ In 2024, we introduced DSMX™-Seq-Seq method asthe first solution to this problem.
+ The 2D DSMX™-Seq-Seq platform overcame limitations associated the perfect ladder
+ requirement, which only dominant RNA species can typicaly meet, and for the first
+ time, extended sequencing reach of RNA therapeutic preparations to minor RNA
+ isomerscontaining any number of canonicalor modified ribonucleotide base
+ present in the sample. One of the first projects we worked on showed that even
+ 'pure' tRNA preparations purchased from prominent vendors were unexpectedly
+ mixed with minor isoforms containing modified ribonucleotide bases.
+ In 2025, we extended the power of 2D DSMX™-Seq-Seq to three dimensionsfor more
+ powerfulde-novo sequence detection of minor RNA species. Our new 3D DSMX™-Seq
+platform is now capable of not just detecting but sequencing and quantifiably
+ (stoichiometricaly) mapping every RNA sequence in atherapeutic preparation,
+ including minor modified base containing isomers, from more complex celular or
+ IVTRNA preparations.
+ </p>
+ <p>
+ DSMX™-Seq generates complete sequence for species down to < 1% abundance and
+ some of the very first applications of DSMX™-Seq showed that even pure tRNA and
+ sgRNA samplespurchased from reputable vendors(including those synthesized
+ with phorphoramidite chemistry) contain modified base isomers at levels far greater
+ than 1% .
+ With obvious implications for elevating the state of the science for RNA therapeutics
+ quality control, we intend to establish DSMX™-Seq as astandard-bearer for reducing
+ lot to lot variability in contaminating RNA species that contribute to unintended off
+target effects.
+        </p>
+        </section>
+
+    <section class="glass-card">
+        <h2 class="h2-underline">More on our Technology</h2>
+        <p>
+             3D DSMXTM-Seq is the first RNA sequencing technology capable of directly
+ sequencing and quantifying every sequence of amixed RNA sample, including minor
+ isomers (down to 1%)differing by only asingle canonicalor modified base. 3D
+ DSMXTM-Seq can identify alof the 170 known base modifications, whether only one
+ or multiple are present, and unlike nanopore technologies, can read modified base
+ sequences found in clusters, as they are commonly found in nature . It is adirect
+sequencing technology (no cDNA step)and unlike other RNA sequencing
+ technologies, the accuracy has been demonstrated at 100% for smalmodified
+ nucleotide reference libraries.
+ </p>
+ <h2 class="h2-underline">How it works</h2>
+ <p>
+     The RNA ishydrolyzed into ladder fragments, which are resolved for the various
+ isoforms by mass, intensity and retention time. Within each layer, short sequencing
+ reads are generated de novo by base-caling nucleotides from mass differences
+ between adjacent ladder fragments. The short reads are then assembled into ful
+length RNA sequences. We routinely sequence siRNA, miRNA, CRISPR/Cas9 sgRNAs
+ and mRNAswhether they contain modified ribonucleotide bases or not. We can
+ also distinguish native from smal-molecular or other species-bound RNAs for RNA
+targeted drug developers.
+  <h2 class="h2-underline">Major Problems Solved with 3D DSMX™-Seq</h2>
+  <ul class="styled-list">
+    <li>The ability to directly read RNA sequences in a highly parallel manner, where each species’ sequence assembly is compartmentalized.</li>
+    <li>The ability to read RNA sequences <em>de novo</em> (without needing a pre-determined sequence reference).</li>
+    <li>The ability to discern canonical from up to <strong>170 different modified ribonucleotide bases</strong> (e.g., pseudouracil, 5-methylcytidine, etc.), including those known to inhibit ribonucleotide hydrolysis—irrespective of their clustering.</li>
+  </ul>
+ </p>
+ </section>
+
+ <section class="glass-card">
+        <h2 class="h2-underline">Demonstration of our Technology</h2>
+        <p>
+             Recent projects have sequenced tRNA, synthetic oligoribonucleotides, siRNA/miRNA
+ mimics, sgRNA and tsRNA samples, and we are completing the validation work
+ necessary to next take on mRNA samplesin the near future. Our tsRNA work
+ provided crucialgranulation for noteworthy research published in Nature
+ Communications, demonstrating the disruptive and transformative nature of our
+ technology.
+ </p>
+ <p>
+    One of the first demonstrations of DSMX™-Seq showcased its discriminatory
+ sequencing power. We found that, surprisingly, acommercialy provided research
+grade tRNA sample from areputable vendor wasactualy aheterogeneous mixture
+ of five different length, canonicalribonucleotide base, and modified ribonucleotide
+ base isomers. One of the two canonicalbase substitution isomers was present at a
+ relative abundance of 0.6 (the other at 0.1), and two different modified base isomers
+ were present at arelative abundance of about 0.2 . Later work demonstrated the
+ homogeneouspurity of asynthetic 20bp ribonucleotide oligomer, its sensitivity and
+ accuracy confirming not just sequence but stoichiometry of synthetic ribonucleotide
+ oligomer mixtures.
+ </p>
+ <p>
+     One of the most important demonstrations of DSMX™-Seq showed that a100
+ nucleotide modified base sgRNA sample produced using phosphoramidite chemical
+ synthesis was revealed to be amixture of the intended, major species along with
+ impurity isomers arising from phosphoramidite chemistry. One length isomer (a
+ truncation) represented 20.7% of the sample mass, and three unintended modified
+ribonucleotide containing isomers were identified to represent 5.0%, 4.5% and 0.3%
+ of the sample. This result is meaningfulto the RNA therapeutics industry, where
+ ribonucleotide base integrity and purity of RNA drugs is generaly assumed when
+ synthesized chemicaly, and suggests that such assumptions need to be revisited.
+ Wehave also demonstrated sequencing on endogenous tsRNAs isolated from the
+ liver of mice. A tsRNA-Glue-CTC species was isolated and shown to be present in
+ four distinct modified ribonucleotide base isoforms, each containing asingle mC, D
+ or D modified basesat positions 6, 19 and 20, respectively.
+ </p>
+ </section>
+
+  <section class="glass-card">
+        <h2 class="h2-underline">Regulatory</h2>
+        <p>
+             The next generation of mRNA drugsare already expanding beyond vaccines to
+ additional disease states, staging the power of this revolutionary technology to fi l
+ critical therapeutic gaps. But adverse events linked with particular delivery
+ modalities and RNA contaminants are just now being fuly understood, and a
+ regulatory framework is stilbeing defined.
+ The major contaminants length truncations, dsRNA and plasmid template carryover from
+ manufacturing are relatively easy to detect, but the same is not the case with modified
+ nucleotide isomers. It has long been known that even low levelsof RNA therapeutic secondary
+ and tertiary sequence isomerization can lead can lead to innate immune sensing, but
+ mechanistic studies show that aberrantly modified ribonucleotides can lead to reduced
+ regulatory control of translation efficiency, altered degradation kinetics, and even nuclear
+ translocation and DNA integration , producing outsized biological effects relative to their
+ abundance.
+ </p>
+ <p>
+     The emergence of unusualy high adverse event rates for COVID vaccineswas a
+ wake-up caland heightened public concern and scrutiny of RNA therapeutics. The
+ COVID-19 mRNA vaccinescontained intentionaly engineered ribonucleotide
+ modifications to enhance durability and reduce unintended immune response, but
+ showed unexpectedly long spike protein mRNA persistence up to severalmonths
+far longer than intended and lot to lot variation in contamination has been
+ associated with varying levels of serious adverse events . Similar observations have
+been made for monogenicreplacement RNA therapies.
+ </p>
+ <p>
+     Product-specific impurities with unnaturalhalf-lives are a concern because their
+ presences is not easily contro lable or knowable with current analytic
+ instrumentation, and their effects not entirely testable in clinical trials of limited
+ patient populations. Modified nucleotide incorporation in RNA therapeutics
+ therefore merit carefulanalytical control and correlation with clinical safety data and
+ we can expect an enhanced Quality Assurance framework for detecting and
+ preventing their contribution to RNA therapeutics contamination going forward.
+ This wilrequire new standards be developed, and the adoption of new technologies
+ and proceduresto enable more comprehensive assessments of RNA complexity
+ during lot analysis, including:
+ <ul class="styled-list">
+    <li> The use of better, more advanced technology that can detect and directly sequence
+ every RNA species present in asample, de-novo, without the need for reference
+ sequences.</li>
+ <li>New RNA standards from NIST constituting mixtures of primary RNA with minor
+ contaminant species of different primary, secondary and tertiary structures, including
+ species that differ by as little as one, and by as many as 10 of the 170 known
+ ribonucleotide base modifications</li>
+ <li> Standardized, internaly validated operating procedures for using this advanced
+ technology including the use of these new NIST RNA standards as controls for each lot
+ analysis.</li>
+ <li> Basic accreditation of laboratories running these standardized procedures including
+ periodic blind chalenge proficiency assessments.</li>
+ <li>More comprehensive quality reporting and storage; never again should we have to
+ speculate about why different lots were associated with unexpected adverse events, or
+ wish we had access to these lots later when the events become apparent.</li>
+  </ul>
+ </p>
+ </section>
+
+ <section class="glass-card">
+        <h2 class="h2-underline">Academic</h2>
+        <h3 class="h3-underline">Unbiased Sequencing of RNA Modifications & The Human RNome Project</h3>
+        <p> RNA molecules encode biological information not only through their sequences but also through
+ over 170 known chemical modifications1. These modifications influence RNA structure, stability,
+ translation, and function—and are implicated in over 100 human diseases, including cancer,
+ diabetes, Alzheimer's, and Parkinson's. As such, RNA and its modification profiles are emerging
+ as powerful biomarkers and therapeutic targets.
+ </p>
+ <p>
+     Yet, our understanding of RNA sequence and modification diversity remains limited2. Current
+ sequencing technologies offer partial insights but fail to provide the fu l spectrum of RNA
+ sequence variants. In fact, we do not know how many unique RNA molecules or sequence
+ variants are present in a sample, and further, we do not know the complete sequence content
+ of each RNA, including the identity and location of every nucleotide (canonical or modified)
+ within a full-length RNA.
+ </p>
+ <p>
+    To overcome these limitations, we developed NGMS-Seq, anext-generation mass
+ spectrometry-based sequencing platform. Unlike optical or electronic systems such as
+ Illumina or Nanopore-based RNA sequencing, NGMS-Seq uses mass spectrometry as direct
+ readout to comprehensively sequence full-length RNAs and their modifications—without bias or
+ prior knowledge across isolated and bulk RNA samples.
+ </p>
+
+  <h2 class="h2-underline">NGMS-Seq enables three unprecedented capabilities: </h2>
+  <ul class="styled-list">
+    <li>Exhaustive sequencing of every RNA sequence without omission (targeting al
+ RNA molecules)</li>
+ <li> Unbiased sequencing of al RNA modifications (targeting al RNA nucleotides,
+ modified or not)</li>
+ <li>Global profiling of RNA and its modifications in human diseases (targeting al RNA
+ and modification changes) </li>
+  </ul>
+
+ <p>
+    These capabilities pave the way for the world's first Human RNome Project, alandmark initiative
+ to draft the first complete sequence of all human RNA molecules and their modifications.Just
+ as Sanger sequencing enabled the Human Genome Project (completed in 2003), NGMS-Seq has
+ potential to deliver the first complete Human RNome, transforming RNA biology, therapeutics,
+ and diagnostics.
+ </p>
+ </section>
+
+
+
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="index.html#problem">← Back to Overview</a>
+          <a class="btn btn-secondary" href="index.html#services">Explore Services</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</body>
+</html>

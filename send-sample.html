@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Send a Sample | DirectSeq</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Reuse your main CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .form-wrap {
+      max-width: 820px; margin: 0 auto; padding: 2rem;
+      background: rgba(243,255,255,0.9); border: 1px solid rgba(10,33,66,0.12);
+      border-radius: 16px; backdrop-filter: blur(10px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-grid .full { grid-column: 1 / -1; }
+    .form-group label { font-weight: 600; color: var(--directseq-blue); display:block; margin-bottom: .35rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: .9rem 1rem; border-radius: 10px; border: 1px solid rgba(10,33,66,.2);
+      font: inherit; color: var(--directseq-blue); background: #fff;
+    }
+    .form-actions { display:flex; gap:1rem; align-items:center; margin-top:1.5rem; }
+    .note { font-size: .95rem; color:#47607f }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="container">
+      <h2 class="section-title">Send a Sample</h2>
+      <div class="form-wrap">
+        <p class="note">Fill this quick form. When you click <b>Submit Request</b>, your email app opens with a pre-filled draft to <em>zhang@directseqbio.com</em>.</p>
+
+        <form id="sampleForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Full Name*</label>
+              <input id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Work Email*</label>
+              <input id="email" name="email" type="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="company">Organization*</label>
+              <input id="company" name="company" required>
+            </div>
+            <div class="form-group">
+              <label for="role">Role/Title</label>
+              <input id="role" name="role">
+            </div>
+
+            <div class="form-group full">
+              <label for="address">Shipping Address*</label>
+              <input id="address" name="address" placeholder="Street, City, State/Province, Postal Code, Country" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone (optional)</label>
+              <input id="phone" name="phone">
+            </div>
+            <div class="form-group">
+              <label for="sample">Requested Sample*</label>
+              <select id="sample" name="sample" required>
+                <option value="" selected disabled>Choose…</option>
+                <option>RNA reference mix</option>
+                <option>Control RNA with modified bases</option>
+                <option>Method evaluation kit</option>
+                <option>Other (describe below)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="use">Intended Use*</label>
+              <select id="use" name="use" required>
+                <option value="" selected disabled>Choose…</option>
+                <option>Therapeutic QC</option>
+                <option>Biomarker discovery</option>
+                <option>Basic research</option>
+                <option>Pilot evaluation</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="timeline">Desired Timeline</label>
+              <input id="timeline" name="timeline" placeholder="e.g., 2–3 weeks">
+            </div>
+
+            <div class="form-group full">
+              <label for="notes">Notes</label>
+              <textarea id="notes" name="notes" rows="4" placeholder="Anything else we should know?"></textarea>
+            </div>
+
+            <div class="form-group full">
+              <label><input type="checkbox" id="consent" required> I agree to be contacted about this request.</label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Submit Request</button>
+            <a class="btn btn-secondary" href="index.html#technology">Back</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const toEmail = "zhang@directseqbio.com"; // TODO: replace with real inbox
+
+    document.getElementById('sampleForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const data = Object.fromEntries(new FormData(this).entries());
+      if (!data.name || !data.email || !data.company || !data.address || !data.sample || !data.use || !document.getElementById('consent').checked) {
+        alert('Please complete all required fields.');
+        return;
+      }
+
+      const subject = encodeURIComponent(`Sample Request – ${data.name} / ${data.company}`);
+      const body = encodeURIComponent(
+`Name: ${data.name}
+Email: ${data.email}
+Company: ${data.company}
+Role: ${data.role || '-'}
+Phone: ${data.phone || '-'}
+Shipping Address: ${data.address}
+
+Requested Sample: ${data.sample}
+Intended Use: ${data.use}
+Desired Timeline: ${data.timeline || '-'}
+
+Notes:
+${data.notes || '-'}
+
+I consent to be contacted about this request.`);
+
+      window.location.href = `mailto:${toEmail}?subject=${subject}&body=${body}`;
+    });
+  </script>
+</body>
+</html>

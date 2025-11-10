@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Client Service | DirectSeq</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .form-wrap {
+      max-width: 860px; margin: 0 auto; padding: 2rem;
+      background: rgba(243,255,255,0.9); border: 1px solid rgba(10,33,66,0.12);
+      border-radius: 16px; backdrop-filter: blur(10px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .form-grid { display:grid; grid-template-columns: 1fr 1fr; gap:1rem; }
+    .full { grid-column:1 / -1; }
+    .form-group label { font-weight:600; color:var(--directseq-blue); display:block; margin-bottom:.35rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      width:100%; padding:.9rem 1rem; border-radius:10px; border:1px solid rgba(10,33,66,.2);
+      font:inherit; color:var(--directseq-blue); background:#fff;
+    }
+    .form-actions { display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem; }
+    .muted { font-size:.95rem; color:#47607f; margin-bottom:1rem; }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="container">
+      <h2 class="section-title">Client Service</h2>
+      <div class="form-wrap">
+        <p class="muted">Send us a note and optionally propose a meeting time. You can email Sales directly or generate a calendar invite we’ll confirm.</p>
+
+        <form id="serviceForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Full Name*</label>
+              <input id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Work Email*</label>
+              <input id="email" name="email" type="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="company">Organization*</label>
+              <input id="company" name="company" required>
+            </div>
+            <div class="form-group">
+              <label for="topic">Topic*</label>
+              <select id="topic" name="topic" required>
+                <option value="" selected disabled>Choose…</option>
+                <option>Platform overview</option>
+                <option>Pricing & contracts</option>
+                <option>Sample submission</option>
+                <option>Partnerships</option>
+                <option>Technical deep-dive</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="message">Message*</label>
+              <textarea id="message" name="message" rows="5" required placeholder="How can we help?"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="date">Preferred Date</label>
+              <input id="date" name="date" type="date">
+            </div>
+            <div class="form-group">
+              <label for="time">Preferred Time</label>
+              <input id="time" name="time" type="time">
+            </div>
+
+            <div class="form-group">
+              <label for="duration">Duration</label>
+              <select id="duration" name="duration">
+                <option value="30" selected>30 minutes</option>
+                <option value="45">45 minutes</option>
+                <option value="60">60 minutes</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="tz">Time Zone</label>
+              <input id="tz" name="tz" placeholder="e.g., America/New_York">
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" type="button" id="emailBtn">Send Email</button>
+            <button class="btn btn-secondary" type="button" id="icsBtn">Create Calendar Invite (.ics)</button>
+            <a class="btn" href="index.html#technology">Back</a>
+          </div>
+          <p class="muted">We'll reply within one business day. For urgent requests, email <a href="mailto:zhang@directseqbio.com">zhang@directseqbio.com</a>.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const salesEmail = "zhang@directseqbio.com"; // TODO: replace
+    const orgName = "DirectSeq";
+
+    // Send email with prefilled body
+    document.getElementById('emailBtn').addEventListener('click', () => {
+      const f = document.getElementById('serviceForm');
+      const data = Object.fromEntries(new FormData(f).entries());
+      if (!data.name || !data.email || !data.company || !data.topic || !data.message) {
+        alert('Please fill in name, email, company, topic, and message.');
+        return;
+      }
+      const subject = encodeURIComponent(`[Client Service] ${data.topic} – ${data.name} / ${data.company}`);
+      const when = (data.date && data.time) ? `${data.date} ${data.time} (${data.tz || 'local time'})` : 'N/A';
+      const body = encodeURIComponent(
+`Name: ${data.name}
+Email: ${data.email}
+Company: ${data.company}
+
+Topic: ${data.topic}
+Message:
+${data.message}
+
+Preferred meeting:
+Date/Time: ${when}
+Duration: ${data.duration || '30'} minutes
+`);
+
+      window.location.href = `mailto:${salesEmail}?subject=${subject}&body=${body}`;
+    });
+
+    // Generate an .ics invite (client downloads and sends/attaches)
+    document.getElementById('icsBtn').addEventListener('click', () => {
+      const f = document.getElementById('serviceForm');
+      const data = Object.fromEntries(new FormData(f).entries());
+
+      if (!data.name || !data.email || !data.company) {
+        alert('Please fill in name, email, and company.');
+        return;
+      }
+      if (!data.date || !data.time) {
+        alert('Please select a preferred date and time to create an invite.');
+        return;
+      }
+
+      // Build start/end in UTC-less format (let calendar apps interpret local time)
+      const startLocal = new Date(`${data.date}T${data.time}:00`);
+      const endLocal = new Date(startLocal.getTime() + (parseInt(data.duration || '30',10) * 60000));
+
+      function toICS(dt) {
+        const pad = (n)=> String(n).padStart(2,'0');
+        return dt.getFullYear()
+          + pad(dt.getMonth()+1)
+          + pad(dt.getDate()) + 'T'
+          + pad(dt.getHours())
+          + pad(dt.getMinutes())
+          + pad(dt.getSeconds());
+      }
+
+      const ics =
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//${orgName}//Client Service//EN
+BEGIN:VEVENT
+UID:${Date.now()}@directseq
+DTSTAMP:${toICS(new Date())}
+DTSTART:${toICS(startLocal)}
+DTEND:${toICS(endLocal)}
+SUMMARY:${orgName} Intro / Client Service
+DESCRIPTION:Requested by ${data.name} (${data.company})\\nEmail: ${data.email}\\nTopic: ${data.topic || '-'}\\nMessage: ${String(data.message||'').replace(/\n/g,'\\n')}
+LOCATION:Video / Phone (to be confirmed)
+END:VEVENT
+END:VCALENDAR`;
+
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `DirectSeq-Client-Meeting-${data.date}.ics`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
