@@ -2044,4 +2044,53 @@ textarea.form-control {
     background: #0A2142 !important;
   }
 
+  /* ===========================================================
+   NAVIGATION FIX — ONLY THE NECESSARY PATCHES (DO NOT MODIFY)
+   =========================================================== */
+
+/* Ensure menu toggle is always clickable above everything */
+.menu-toggle {
+    position: relative;
+    z-index: 9999 !important;
+}
+
+/* Mobile navigation panel should slide in correctly */
+@media (max-width: 768px) {
+    nav .nav-links,
+    .nav-links {
+        position: fixed !important;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        height: 100vh;
+        background: var(--primary-dark);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding-top: 4rem;
+        transition: right 0.35s ease !important;
+        z-index: 9998 !important;
+    }
+
+    /* When active, slide in */
+    nav .nav-links.active,
+    .nav-links.active {
+        right: 0 !important;
+    }
+
+    /* Mobile text white so it's visible */
+    .nav-links a {
+        color: var(--white) !important;
+        font-size: 1.25rem;
+        letter-spacing: 0.5px;
+    }
+
+    /* Highlight underline */
+    .nav-links a:after {
+        background: var(--directseq-green) !important;
+    }
+}
+
+
 }
