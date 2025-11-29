@@ -1452,6 +1452,26 @@ footer {
   color: var(--directseq-green);
 }
 
+.footer-social {
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.footer-social img {
+  width: 26px;
+  height: 26px;
+  opacity: 0.9;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.footer-social img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+
 .copyright {
   color: var(--grey);
   font-size: 0.9rem;
